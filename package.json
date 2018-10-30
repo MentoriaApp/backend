@@ -1,8 +1,8 @@
 {
-  "name": "mentoria-backend",
+  "name": "backend",
   "version": "1.0.0",
-  "description": "Backend do sistema de mentoria do linkedin",
-  "main": "app.js",
+  "description": "backend do projeto",
+  "main": "index.js",
   "dependencies": {
     "node-linkedin": "^0.5.6",
     "restify": "^7.2.1"
@@ -13,15 +13,14 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MentoriaApp/backend.git"
   },
   "keywords": [
-    "mentoria",
-    "linkedin"
+    "mentoria"
   ],
   "author": "Edgar Muniz Berlinck",
   "license": "SEE LICENSE IN LICENSE",
