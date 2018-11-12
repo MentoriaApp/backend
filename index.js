@@ -81,4 +81,4 @@ const extractMentorContacts = entry => {
 server.get('/api/mentor/list', fetchMentorList)
 server.get('/', (req, res) => res.send("Working"))
 
-server.listen(80)
+server.listen(process.env.PORT || 1337)
