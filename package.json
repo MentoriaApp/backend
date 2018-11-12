@@ -1,31 +1,24 @@
 {
-  "name": "backend",
+  "name": "tc-mentor-fetch",
   "version": "1.0.0",
-  "description": "backend do projeto",
+  "description": "Gerador de Banco de Dados de Mentores a partir o Github",
   "main": "index.js",
-  "dependencies": {
-    "node-linkedin": "^0.5.6",
-    "restify": "^7.2.1"
-  },
-  "devDependencies": {
-    "dotenv": "^6.0.0",
-    "nodemon": "^1.18.3"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MentoriaApp/backend.git"
-  },
   "keywords": [
+    "training",
+    "center",
     "mentoria"
   ],
   "author": "Edgar Muniz Berlinck",
   "license": "SEE LICENSE IN LICENSE",
-  "bugs": {
-    "url": "https://github.com/MentoriaApp/backend/issues"
+  "dependencies": {
+    "node-fetch": "^2.2.1",
+    "restify": "^7.2.2"
   },
-  "homepage": "https://github.com/MentoriaApp/backend#readme"
+  "devDependencies": {
+    "nodemon": "^1.18.6"
+  }
 }
