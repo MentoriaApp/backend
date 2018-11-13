@@ -111,4 +111,11 @@ server.get('/', (req, res) => {
     })
 })
 
+server.use(
+    function crossOrigin(req,res,next){
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        return next();
+    }
+);
 server.listen(process.env.PORT || 1337)
