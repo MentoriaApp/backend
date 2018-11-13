@@ -90,7 +90,7 @@ const extractMentorContacts = entry => {
 //@TODO: Fetch profile pic using this -> https://developer.github.com/v3/users/#get-a-single-user
 const fetchPhoto = async (req, res) => {
     let { mentor } = req.params
-    const url = `https://api.github.com/users/${mentor}` 
+    const url = `http://api.github.com/users/${mentor}` 
     const result = await fetch(url, {
         method: 'GET'
     }).
