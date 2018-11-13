@@ -13,7 +13,7 @@ const fetchMentorList = async (req, res) => {
    let stream = result.body;
    let mentorList = '';
    stream.on('data', buffer => mentorList += buffer);
-   stream.on('end', () => { mentorList = createMentorList(mentorList); res.send(mentorList) })
+   stream.on('end', async () => { mentorList = createMentorList(mentorList); res.send(mentorList) })
 }
 
 const createMentorList = (markupFile) => {
@@ -44,6 +44,7 @@ const entryToModel = entry => {
             }
         }
     })
+
     mentor.isActive = (mentor.contact !== null)
     return mentor;
 }
@@ -51,7 +52,15 @@ const entryToModel = entry => {
 const extractMentorDescription = entry => {
     let name = entry.match(/(\[.+\])/g)[0].replace(/\[|]/g, '')
     let url = entry.match(/(\(.+\))/g)[0].replace(/\(|\)/g, '')
-    return { name, url }
+    let hasProfilePicture = false;
+    let username = null;
+
+    if (url.indexOf('github.com') > -1) {
+        hasProfilePicture = true;
+        username = url.replace('https://github.com/', '').replace('http://github.com/', '')
+    }
+
+    return { name, url, hasProfilePicture, username }
 }
 const extractMentoryType = entry => {
     return entry.split('/').map( e => e.trim())
@@ -78,7 +87,28 @@ const extractMentorContacts = entry => {
     return contacts
 }
 
+const fetchPhoto = async (req, res) => {
+    let { github } = req.params
+
+    const url = `https://github.com/${github}.png`
+    const result = await fetch(url, {
+       method: 'GET'
+   })
+
+   res.send(result.url)
+}
+
 server.get('/api/mentor/list', fetchMentorList)
-server.get('/', (req, res) => res.send("Working"))
+server.get('/api/picture/:mentor', fetchPhoto)
+server.get('/', (req, res) => {
+    const methods = {
+        fetchMentors: '/api/mentor/list',
+        menthorPhoto: '/api/picture/:mentor-username'
+    }
+    
+    res.send(methods, {
+        "Content-Type": "application/json"
+    })
+})
 
 server.listen(process.env.PORT || 1337)
