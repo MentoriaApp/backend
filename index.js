@@ -57,7 +57,7 @@ const extractMentorDescription = entry => {
 
     if (url.indexOf('github.com') > -1) {
         hasProfilePicture = true;
-        username = url.replace('https://github.com/', '').replace('http://github.com/', '')
+        username = url.replace('https://github.com/', '').replace('http://github.com/', '').replace(/\//g, '')
     }
 
     return { name, url, hasProfilePicture, username }
