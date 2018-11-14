@@ -63,7 +63,7 @@ const extractMentorDescription = entry => {
     return { name, url, hasProfilePicture, username }
 }
 const extractMentoryType = entry => {
-    return entry.split('/').map( e => e.trim())
+    return entry.replace(/\[\[.+\]\]\(.+\)/g, '').split('/').map( e => e.trim())
 }
 const extractMentorContacts = entry => {
     if (entry.trim() === ":snowflake:") return null
@@ -87,7 +87,6 @@ const extractMentorContacts = entry => {
     return contacts
 }
 
-//@TODO: Fetch profile pic using this -> https://developer.github.com/v3/users/#get-a-single-user
 const fetchPhoto = async (req, res) => {
     let { mentor } = req.params
     const url = `http://api.github.com/users/${mentor}` 
