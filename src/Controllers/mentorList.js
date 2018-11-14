@@ -47,7 +47,7 @@ function extractMentorDescription(entry){
 }
 
 function extractMentoryType(entry){
-    return entry.split('/').map( e => e.trim());
+    return entry.replace(/\[\[.+\]\]\(.+\)/g, '').split('/').map( e => e.trim())
 }
 
 function extractMentorContacts(entry){
