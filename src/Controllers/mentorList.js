@@ -54,7 +54,6 @@ function extractMentorContacts(entry){
     if (entry.trim() === ":snowflake:") return null
     let contacts = {}
     entry.trim().split(' ').map(rawData => {
-        console.log(rawData)
         try {
             if (rawData == 'Slack') {
                 // Means mentor is available @ training center slack channel
@@ -65,7 +64,7 @@ function extractMentorContacts(entry){
                 contacts[key] = url
             }
         } catch {
-            console.error('Don`t get fooled by human errors')
+            console.error(`Don't get fooled by human errors. You received: ${rawData} as paramether`)
         }
     });
 
